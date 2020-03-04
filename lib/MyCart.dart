@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 class MyCart extends StatefulWidget {
   @override
   _MyCartState createState() => _MyCartState();
 }
 
 class _MyCartState extends State<MyCart> {
-  List mycart = [];
+  List mycart = ["1"];
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height/780;
@@ -45,6 +46,11 @@ class _MyCartState extends State<MyCart> {
                            itemCount: 9,
                            itemBuilder: (BuildContext context , int index){
                              return Card(
+                               shape: RoundedRectangleBorder(
+
+                                 borderRadius: BorderRadius.circular(50.0),
+
+                               ),
                                child: Padding(
                                  padding: EdgeInsets.all(10.0),
                                  child: Column(
@@ -77,8 +83,34 @@ class _MyCartState extends State<MyCart> {
                                              ),
                                            ],
                                          ),
+                                         Container(
+                                           child: IconButton(
+                                            icon:new Icon(Icons.cancel),
+                                             color: Colors.red,
+                                             onPressed: () {
+                                             showDialog(context: context,
+                                             child: new AlertDialog(
+                                               title: Text("Do you want to remove from cart?" ,textDirection: TextDirection.ltr,style: TextStyle(fontSize: 14.0),),
+//                                               backgroundColor: Colors.blueGrey,
+                                               actions: <Widget>[
+                                                 FlatButton(
+                                                   child: Text("Yes"),
+                                                   onPressed: (){
+                                                   },
+                                                 ),
+                                                 FlatButton(
+                                                   child: Text("No"),
+                                                   onPressed: (){
+                                                   },
+                                                 ),
 
+                                               ],
+                                             ),
+                                           );}
+                                           ),
+                                         )
                                        ],
+                                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                      ),
                                    ],
                                  ),
